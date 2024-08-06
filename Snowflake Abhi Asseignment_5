@@ -1,0 +1,90 @@
+41) Display name,salary,hra,pf,da,total salary for each employee. The  output should be in the order of total
+      salary, hra 15% of salary, da 10% of salary,pf 5%  salary,total salary will be(salary+hra+da)-pf. 
+   create or replace table employees(name varchar(30),salary number )
+
+              insert into employees(name,salary)
+                   values('raju',15000),
+                       ('mani', 25000),
+                              ('nani', 18000)
+
+
+SELECT
+   name,salary
+    salary,
+    0.15 * salary AS hra,
+    0.10 * salary AS da,
+    0.05 * salary AS pf,
+    (salary + 0.15 * salary + 0.10 * salary) - 0.05 * salary AS total_salary
+            FROM
+                employees;
+
+42) Display depart numbers and total number of employees working in each department. 
+  
+
+  select department_id, count(employee_id) as total_employees
+
+      from employees group by department_id
+
+
+43) Display the various jobs and total number of employees within each job group. 
+
+      select job_id, count(employee_id) as total_employees
+
+          from employees group by job_id
+
+44) Display the depart numbers and total salary for each department. 
+SELECT department_id,SUM(salary) AS total_salary
+FROM  employees
+GROUP BY department_id;
+
+
+45) Display the depart numbers and max salary for each department. 
+
+Select department_id, max(salary) 
+from employees group by department_id
+
+
+46) Display the various jobs and total salary for each job 
+
+select manager_id,SUM(salary) AS total_salary
+FROM employees
+GROUP BY  manager_id;
+
+
+
+47) Display the various jobs and total salary for each job 
+
+select  manager_id, sum(salary) AS total_salary
+from  employees
+group by  manager_id;
+
+48) Display the depart numbers with more than three employees in each dept. 
+
+ select department_id from employees group by department_id having count(*)>3
+ 
+
+
+
+49) Display the various jobs along with total salary for each of the jobs  Where total salary is greater than 40000. 
+
+SELECT job_id, SUM(salary) AS total_salary
+FROM employees GROUP BY job_id HAVING SUM(salary) > 40000;
+
+
+50) Display the various jobs along with total number of employees in each  job. 
+         The output should contain only those jobs with more than three employees
+		 
+		 
+		 SELECT job_title, COUNT(employee_id) AS total_employees
+           FROM  employees GROUP BY  job_title
+             HAVING COUNT(employee_id) > 3;
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
